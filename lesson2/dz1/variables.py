@@ -1,9 +1,11 @@
 # объект описания через переменные 
-from typing import Dict
+
 from pprint3x import pprint
+
 
 def insert_into_namespace(name, value, name_space=globals()):
     name_space[name] = value
+
 
 def get_object_description():
     description = {
@@ -14,24 +16,25 @@ def get_object_description():
         'IQ': 100,
         'cash': 11165.15,
         'currency': 'RUR',
-        'psy_condition': 'procrastination',
+        'psy_condition': 'zen',
         'avg_academic performance': 4.17,
         'victories on the personal front': -7,
-        'list_to_do': ['найти еду', 'найти стажеровку', 'отработать в смену',\
+        'list_to_do': ['найти еду', 'найти стажеровку', 'отработать в смену', \
                        'подготовиться к колоквиуму', 'потусить в ночном клубе']
 
     }
     types = {'str': str,
              'int': int,
-             'float': float }
+             'float': float,
+             'bool': bool}
     for i in range(5):
-        name_variable = input('Введите имя переменной:\n')
+        name_variable = input('Введите имя переменной ("exit" для завершения ввода):\n')
         if name_variable == 'exit':
             break
-        value_variable = input('Введите значение переменной:\n')
+        value_variable = input('Введите значение переменной ("exit" для завершения ввода):\n')
         if value_variable == 'exit':
             break
-        type_variable = input(f'Введите тип переменной из списка {types}:\n')
+        type_variable = input(f'Введите тип переменной из списка {types}\n("exit" для завершения ввода):\n')
         if type_variable == 'exit':
             break
         if type_variable in types:
@@ -43,7 +46,9 @@ def get_object_description():
     return description
 
 
-print(__name__)
-
 if __name__ == "__main__":
-    pprint(get_object_description())
+    my_dict = get_object_description()
+    pprint(my_dict)
+    print()
+    for k, v in my_dict.items():
+        print(k, 'is', type(v))
